@@ -11,6 +11,7 @@ verilerine göre **asimetrik ve dinamik** olarak hesaplanır.
 Detaylar için:
 - [`docs/CONCEPT.md`](docs/CONCEPT.md) — ürün konsepti, mekanikler, temel kararlar
 - [`docs/ROADMAP.md`](docs/ROADMAP.md) — fazlı yol haritası
+- [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md) — backend/AI mimari önerisi (mühendis arkadaşla gözden geçirilecek)
 
 ## Durum
 
