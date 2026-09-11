@@ -12,7 +12,8 @@ sağlam şekilde oturmadan bir sonrakine geçilmeyecek.
 ## Faz 1 — MVP Çekirdek
 Amaç: uygulamanın temel döngüsünü çalışır halde görmek.
 
-- Kullanıcı kaydı (e-posta/telefon ile basit auth)
+- Kullanıcı kaydı (e-posta/telefon ile basit auth) — **arayüz mock ile hazır,
+  gerçek Firebase Authentication bağlantısı bekliyor**
 - AI ile sohbet ederek profil oluşturma (onboarding)
 - Asimetrik uyum yüzdesi hesaplama (ilk versiyon: ilgi alanı bazlı, basit)
 - Basit keşif ekranı (profilleri uyum yüzdesiyle listeleme)

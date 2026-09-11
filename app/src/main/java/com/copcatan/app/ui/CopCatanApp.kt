@@ -17,11 +17,13 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import com.copcatan.app.ui.auth.AuthScreen
 import com.copcatan.app.ui.chat.ChatScreen
 import com.copcatan.app.ui.discovery.DiscoveryScreen
 import com.copcatan.app.ui.matches.MatchesScreen
 import com.copcatan.app.ui.onboarding.OnboardingScreen
 
+private const val ROUTE_AUTH = "auth"
 private const val ROUTE_ONBOARDING = "onboarding"
 private const val ROUTE_DISCOVERY = "discovery"
 private const val ROUTE_MATCHES = "matches"
@@ -31,7 +33,16 @@ private const val ROUTE_CHAT = "chat/{matchId}"
 fun CopCatanApp() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = ROUTE_ONBOARDING) {
+    NavHost(navController = navController, startDestination = ROUTE_AUTH) {
+        composable(ROUTE_AUTH) {
+            AuthScreen(
+                onAuthenticated = {
+                    navController.navigate(ROUTE_ONBOARDING) {
+                        popUpTo(ROUTE_AUTH) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(ROUTE_ONBOARDING) {
             OnboardingScreen(
                 onFinished = {
