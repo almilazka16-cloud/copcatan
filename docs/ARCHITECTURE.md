@@ -34,18 +34,35 @@ AI'ya sor" — **ölçeklenmez**: N kullanıcı için N² çift olur, her biri i
 **Önerilen çözüm: İki katmanlı hesaplama**
 
 1. **Embedding tabanlı temel skor (ucuz, hızlı, ölçeklenir)**
-   - Her kullanıcının profil verisi (AI onboarding sohbetinden çıkarılan
-     ilgi alanları/kişilik özeti) bir **embedding vektörüne** dönüştürülür
-     ve Firestore'da saklanır. Bu, profil oluşturulduğunda/güncellendiğinde
-     bir kere yapılır — görüntüleme başına değil.
-   - İki kullanıcı arasındaki temel uyum, bu vektörlerin **kosinüs
-     benzerliği** ile anında hesaplanır (matematiksel işlem, LLM çağrısı
-     gerektirmez). Bu, asimetrikliği doğal olarak destekler: A'nın
-     vektörüyle B'nin vektörü arasındaki benzerlik, farklı ağırlıklandırma
-     / normalize etme mantığıyla her kullanıcı için farklı bir yüzdeye
-     dönüştürülebilir.
-   - Bu sayede keşif ekranı, binlerce profil arasında anında sıralama
-     yapabilir.
+
+   Önemli bir detay: düz kosinüs benzerliği **simetriktir** — A ile B'nin
+   vektörleri arasındaki benzerlik, B ile A için de aynı çıkar. Ama konsept
+   asimetrik ("A, B'yi %85 görürken B, A'yı %60 görebilir"). Bunu gerçekten
+   elde etmek için her kullanıcı için **tek değil, iki vektör** tutuyoruz:
+
+   - **Kimlik vektörü** ("ben kimim"): ilgi alanları, kişilik, değerler —
+     onboarding sohbetinden çıkarılır.
+   - **Tercih vektörü** ("neyi önemsiyorum"): onboarding sırasında kullanıcıya
+     "senin için bir ilişkide/partnerde en önemli şeyler neler, hangileri
+     daha az önemli" gibi sorularla, hangi özelliklere ne kadar ağırlık
+     verdiği çıkarılır.
+
+   A'nın B'yi görme yüzdesi = **A'nın tercih vektörü** ile **B'nin kimlik
+   vektörü** karşılaştırılarak hesaplanır ("B, A'nın aradığı şeylere ne kadar
+   uyuyor"). B'nin A'yı görme yüzdesi ise tam tersi: **B'nin tercih vektörü**
+   ile **A'nın kimlik vektörü**. İki kullanıcının öncelikleri farklı
+   olduğundan (biri "ortak hobi" ye, diğeri "değerlerin örtüşmesi"ne daha çok
+   ağırlık veriyor olabilir), sonuç doğal olarak asimetrik çıkar — yapay bir
+   rastgelelik eklemeye gerek kalmaz, matematiksel olarak farklıdır.
+
+   - Bu iki vektör de profil oluşturulduğunda/güncellendiğinde **bir kere**
+     hesaplanıp Firestore'da saklanır — görüntüleme başına değil.
+   - Karşılaştırma (ağırlıklı benzerlik) matematiksel bir işlemdir, LLM
+     çağrısı gerektirmez, binlerce profil arasında anında sıralama yapılabilir.
+   - Somut örnek: A, "ortak ilgi alanları"na yüksek önem veriyor ama
+     "kariyer hedefleri"ne düşük önem veriyorsa; B'nin kimlik vektöründeki
+     ilgi alanları öne çıkan boyutlar, A'nın tercih vektöründeki ağırlıklarla
+     çarpılıp toplanır ve normalize edilerek bir yüzdeye çevrilir.
 
 2. **LLM ile zenginleştirme (pahalı ama seyrek kullanılan)**
    - Kullanıcı bir profile tıklayıp detayına baktığında veya eşleştiğinde,
@@ -68,7 +85,8 @@ profiles/{userId}
   - name, age, bio
   - interests: string[]
   - personalitySummary: string        (AI onboarding çıktısı)
-  - embeddingVector: number[]         (uyum hesaplaması için)
+  - identityVector: number[]          (kimlik vektörü: "ben kimim")
+  - preferenceVector: number[]        (tercih vektörü: "neyi önemsiyorum")
   - updatedAt
 
 onboardingChats/{userId}/messages/{messageId}

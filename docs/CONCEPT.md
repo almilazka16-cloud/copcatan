@@ -54,9 +54,14 @@ bir çekirdek, sonra üstüne katman katman ekleme. Detaylı fazlar için
 Bunlar şu an karar verilmemiş, geliştirme ilerledikçe netleştireceğimiz
 noktalar:
 
-- Uyum yüzdesi hesaplaması tam olarak hangi verilerden besleniyor? (Sadece
-  ilgi alanları mı, yoksa davranışsal veriler — mesajlaşma tarzı, uygulama
-  kullanımı — de dahil mi?)
+- ~~Uyum yüzdesi hesaplaması tam olarak hangi verilerden besleniyor?~~
+  **Netleşti** (bkz. `ARCHITECTURE.md`): her kullanıcı için iki ayrı vektör
+  tutulacak — "ben kimim" (kimlik vektörü) ve "neyi önemsiyorum" (tercih
+  vektörü). A'nın B'yi görme yüzdesi, A'nın tercihleriyle B'nin kimliği
+  karşılaştırılarak hesaplanır; bu asimetrikliği matematiksel olarak
+  garanti eder. Açık kalan nokta: davranışsal veriler (mesajlaşma tarzı,
+  kullanım alışkanlıkları) ileride bu vektörlere dahil edilecek mi —
+  bu, Faz 3'te ele alınacak.
 - Keşif ekranında sıralama mantığı: en yüksek uyumdan mı başlasın, yoksa
   çeşitlilik için karışık mı sunulsun?
 - AI sohbet onboarding'i ne kadar sürsün / kaç soru içersin?
