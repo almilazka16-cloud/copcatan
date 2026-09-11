@@ -14,8 +14,29 @@ Detaylar için:
 
 ## Durum
 
-Proje henüz **konsept/planlama aşamasında**. Kod yazımına başlamadan önce
-ürün kapsamı netleştiriliyor.
+Ürün konsepti netleşti, **Faz 1 (MVP çekirdek)** için Android proje iskeleti
+kuruldu. Şu an sahte (mock) verilerle çalışan bir uçtan uca akış var:
+
+- AI ile sohbet ederek profil oluşturma (onboarding) — şu an sabit sorularla,
+  gerçek AI entegrasyonu sonraki adım
+- Keşif ekranı — uyum yüzdesiyle profil kartları
+- Eşleşmeler ekranı
+- Basit mesajlaşma ekranı
+
+Henüz **backend, gerçek AI entegrasyonu ve kimlik doğrulama yok**. Bunlar
+yol haritasındaki sonraki adımlar (bkz. `docs/ROADMAP.md`).
+
+## Projeyi Açmak (mühendis arkadaş için)
+
+1. [Android Studio](https://developer.android.com/studio) kur.
+2. Bu repoyu Android Studio ile aç (kök dizini seç).
+3. Gradle senkronizasyonunun bitmesini bekle (ilk açılışta Android SDK
+   bileşenlerini otomatik indirir).
+4. Bir emülatör veya fiziksel cihazda çalıştır (minSdk 26 / Android 8.0+).
+
+Not: Bu geliştirme ortamında (sandbox) Android SDK ve Google'ın Maven
+deposuna erişim olmadığı için proje burada derlenip test edilemedi; kod
+elle gözden geçirildi ama ilk gerçek derleme Android Studio'da yapılmalı.
 
 ## Ekip
 
