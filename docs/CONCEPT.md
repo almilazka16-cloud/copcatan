@@ -6,62 +6,147 @@ Piyasadaki dating uygulamalarının çoğu (Tinder, Bumble, Hinge...) statik bir
 "beğen/beğenme" akışına dayanıyor. CopCatan'ın farkı:
 
 > Aynı profil, farklı kullanıcıların ekranında **farklı bir uyum yüzdesiyle**
-> görünür. Bu yüzde, kullanıcıların ilgi alanları ve AI ile yapılan sohbetten
-> çıkarılan kişilik/tercih verilerine göre hesaplanır ve zamanla, kullanıcı
-> uygulamayı kullandıkça gelişir/güncellenir.
+> görünür. Bu yüzde, kullanıcının kim olduğu ve karşı taraftan ne beklediği
+> AI ile yapılan sohbetlerden çıkarılarak hesaplanır ve kullanıcı uygulamayı
+> kullandıkça (özellikle buluşma sonrası geri bildirimlerle) güncellenir.
 
 Bu, statik bir "eşleşme skoru" değil; **her kullanıcı çifti için tek yönlü ve
-kişiselleştirilmiş bir uyum tahmini**dir.
+kişiselleştirilmiş bir uyum tahmini**dir. Uygulama arkadaşlık ve romantik
+ilişki arayan kullanıcılara hitap eder; form doldurtmaz, seçenek listesi
+sunmaz — her şey sohbet üzerinden ilerler.
 
-## Temel Mekanikler
+## Kullanıcı Yolculuğu
 
-### 1. AI ile Profil Oluşturma
-- Kullanıcı kayıt olurken bir AI ile **sohbet ederek** profilini oluşturur
-  (form doldurmak yerine, mülakat/sohbet tarzında bir onboarding).
-- AI, bu sohbetten ilgi alanlarını, kişilik özelliklerini, değerlerini ve
-  tercihlerini çıkarır ve yapılandırılmış bir "profil verisi" haline getirir.
-- Bu profil verisi statik değildir: kullanıcı uygulamayı kullandıkça
-  (yeni sohbetler, etkileşimler, geri bildirimler) profil zenginleşir ve
-  uyum hesaplamaları güncellenir.
+Aşağıdaki sıra, bir kullanıcının uygulamayla ilk temasından bir buluşma
+sonrasına kadar geçireceği akışı özetliyor.
 
-### 2. Asimetrik Uyum Yüzdesi
-- Kullanıcı A, kullanıcı B'nin profilini **%85 uyumlu** olarak görebilirken,
-  B aynı anda A'yı **%60 uyumlu** olarak görebilir. Yüzdeler simetrik değildir.
-- Uyum hesaplaması, iki kullanıcının profil verilerinin (ilgi alanı, değerler,
-  kişilik) AI tarafından karşılaştırılmasıyla üretilir.
-- Kullanıcılar bu farkı görür ve zamanla "neden bu kadar uyumlu/uyumsuz
-  görünüyorum" sorusuna karşı meraklı kalır — bu da etkileşimi artıran bir
-  tasarım unsuru.
+### 1. Kayıt ve Doğrulama
+- Giriş e-posta veya telefon numarasıyla, doğrulama kodu ile yapılır (bkz.
+  Android iskeletindeki mock `AuthScreen`).
+- **18 yaş altı kullanamaz** — yaş/kimlik doğrulaması zorunlu.
+- Fotoğraf doğrulaması **video ile canlılık kontrolü** üzerinden yapılır.
+  Sonradan eklenen bir fotoğraf, doğrulanan yüzle eşleşmiyorsa kabul
+  edilmez. **Doğrulanmamış bir profil uygulamada hiçbir şekilde
+  kullanılamaz** — bu opsiyonel bir adım değil, zorunlu bir kapı.
+- Profilde kullanıcının değiştirebileceği tek alanlar: **isim, yaş,
+  fotoğraflar**. Geri kalan her şey (kişilik özeti, ilgi alanları, tercih
+  verisi) AI sohbetlerinden türetilir, kullanıcı tarafından elle
+  düzenlenemez.
 
-### 3. Eşleşme ve Mesajlaşma
-- Keşif ekranında kullanıcılar, kendilerine göre hesaplanmış uyum yüzdesine
-  göre profilleri görür (yüksekten düşüğe sıralanabilir veya karışık
-  gösterilebilir — bu ayrı bir tasarım kararı).
-- **Karşılıklı beğenme (like) şartı korunuyor**: iki taraf da birbirini
-  beğenirse eşleşme oluşur ve mesajlaşma açılır. Yani uyum yüzdesi bir
-  "öneri/sıralama" sinyali, ama sohbet başlatmak için hâlâ karşılıklı onay
-  gerekiyor (Tinder'a yakın ama uyum hesaplaması tamamen farklı).
+### 2. Kimlik Sohbeti ("Sen kimsin?")
+- AI ile serbest bir sohbet: kullanıcı kendini anlatır, AI soruları sohbetin
+  akışına göre yönlendirir (sabit bir form/anket değil).
+- AI bu sohbetten kullanıcının ilgi alanlarını, değerlerini ve kişilik
+  özelliklerini (ör. ne kadar uyumlu, cömert, kibirli göründüğü gibi
+  boyutları) çıkarır ve bunları **kimlik vektörüne** dönüştürür.
+- **Kullanıcı bu iç değerlendirmeyi hiçbir zaman görmez.** Amaç kullanıcıyı
+  etiketlemek değil, AI'ın onu daha iyi eşleştirebilmesi.
+
+### 3. Tercih Sohbeti ("Kimi arıyorsun?")
+- Ayrı bir sohbet: AI, kullanıcının karşı tarafta ne aradığını sorar.
+  Bazı sorular doğrudan ("İlişkide senin için en önemli şey ne?"), bazıları
+  **hikayeleştirilmiş senaryolar** üzerinden sorulur (ör. "Şöyle bir çift
+  şöyle bir durum yaşamış, sence bu ne kadar sürdürülebilir?" gibi bir
+  anlatı üzerinden mesafe toleransı, yaşam tarzı uyumu gibi konular ölçülür).
+- Bu sohbetten çıkan veri, **tercih vektörünü** oluşturur — "neyi
+  önemsiyorum" bilgisi.
+- Bu aşamada iki farklı sinyal toplanır:
+  - **Yumuşak tercihler** → uyum yüzdesini etkiler (ağırlıklandırma).
+  - **Sert filtreler / dealbreaker'lar** → tamamen eleyicidir. Örnek:
+    kullanıcı "sigara içen biriyle kesinlikle olmam" derse, sigara içtiğini
+    belirtmiş biri o kullanıcının havuzuna **hiç girmez** — düşük yüzdeyle
+    bile görünmez.
+  - **İlişki niyeti uyuşmazlığı** da sert bir filtredir: "sadece anlık/an
+    ilişkisi" isteyen biriyle "ciddi ilişki/evlilik" isteyen biri birbirinin
+    havuzuna girmez.
+
+### 4. Asimetrik Uyum Yüzdesi
+- A'nın B'yi görme yüzdesi = A'nın tercih vektörü × B'nin kimlik vektörü
+  (bkz. `ARCHITECTURE.md`). B'nin A'yı görme yüzdesi bunun tam tersi ve
+  genelde **farklı bir sayı** çıkar — çünkü iki kişinin öncelikleri
+  birbirinden bağımsızdır.
+  - Örnek: Ali'nin havuzunda Ayşe %60, Fatma %10 görünebilir (Ali'nin
+    tercihlerine göre). Aynı anda Ayşe'nin havuzunda Ali %40 görünebilir
+    (Ayşe'nin kendi, farklı, tercihlerine göre).
+- **Kullanıcı kendi yüzdesini asla göremez** — yani Ali, başkalarının onu
+  kaçta gördüğünü bilemez. Bu bilinçli bir tasarım kararı: amaç kimsede
+  "ben yetersizim" hissi yaratmamak. Yüzde sadece "karşındakine bakarken"
+  bir sinyal olarak gösterilir, kendine bakarken değil.
+- Sert filtreler (madde 3) ile elenen kişiler havuzda hiç görünmez; yüzde
+  sadece filtreyi geçen kişiler arasında anlamlıdır.
+
+### 5. Keşif ve Eşleşme
+- Keşif havuzu; uyum yüzdesi, yaş/konum uygunluğu, iş hayatı/yaşam tarzı
+  denkliği ve sert filtrelerin kesişimiyle oluşur.
+- Karşılıklı beğenme (like) ile eşleşme gerçekleşir ve mesajlaşma açılır.
+
+### 6. Buluşma Moduna Geçiş
+- Eşleşen kullanıcılar sohbet ederken, belirli bir noktadan sonra (ör. belli
+  sayıda mesajdan sonra) uygulama bir **"buluşmaya geçelim mi?"** seçeneği
+  sunar.
+- Bu seçilirse sohbet, **ayrı bir arayüze** geçer: buluşma yeri/zamanı gibi
+  pratik detayların konuşulduğu, normal sohbetten görsel olarak ayrışan bir
+  mod.
+
+### 7. Güvenlik — Güvendiğin Kişi Bildirimi
+- Kullanıcılar önceden bir güvendikleri kişiyi (acil durum kişisi) atar.
+- Buluşma detayları (kiminle, nerede) netleştiğinde, **her iki tarafın da
+  güvendiği kişisine otomatik bir bilgilendirme** gider (ör. "Ayşe, Ali ile
+  Kızılay'da buluşacak").
+- Amaç: taraflardan birine bir şey olursa veya ulaşılamazsa, güvenilen kişi
+  bilgi sahibi olsun.
+- Bu özellik açık kullanıcı onayı gerektirir (KVKK/gizlilik konusu — bkz.
+  ileride ele alınacak "Yasal/Güvenlik" çalışması).
+
+### 8. Buluşma Öncesi Küçük Tavsiyeler
+- Buluşma ayarlandıktan sonra, cinsiyete ve konuşulan konulara özel küçük
+  öneriler sunulur (ör. "konuştuğunuz kitabı götürmek tatlı bir jest
+  olabilir", parfüm/makyaj ipuçları gibi). "Son dakika kurtarıcıları" olarak
+  düşünülüyor — zorunlu değil, hafif ve keyifli bir dokunuş.
+
+### 9. Buluşma Sonrası — "His Odaları"
+- Buluşmadan sonra (aynı gün veya ertesi gün) her iki taraf **ayrı ayrı**
+  AI ile buluşmayı konuşur — samimi, "arkadaşına anlatır gibi" bir sohbet.
+- AI sunucu tarafında **her iki tarafı da tanıdığı için**, çelişkileri
+  yakalayabilir: biri kendini olduğundan farklı tanıtmışsa, ya da beklenmedik
+  olumlu/olumsuz bir şey ortaya çıkmışsa, bu bilgi **karşı tarafın kimlik
+  vektörünü günceller**.
+- Bu, sistemin öğrenen bir geri bildirim döngüsü olmasını sağlar: profil
+  sadece ilk sohbetle sabitlenmiş bir şey değil, gerçek buluşma
+  deneyimleriyle zaman içinde güncellenen bir şey.
+- Hassas bir özellik olduğu için kötüye kullanıma (asılsız/kötü niyetli
+  geri bildirim) karşı nasıl korunacağı ayrıca tasarlanmalı.
+
+### 10. Kötüye Kullanım ve Yaptırımlar
+- Küfür, hakaret gibi ihlallerde **3 aylık bir engelleme** uygulanır.
+- Engelleme cihaz bazlı düşünülüyor (yeni hesapla kolayca aşılmasın diye) —
+  bunun teknik olarak nasıl uygulanacağı (cihaz parmak izi vb.) mühendis
+  arkadaşla ayrıca konuşulacak bir konu.
+- Engellenen kullanıcı uygulamayı tekrar açtığında kalan süresini gösteren
+  bir ekranla karşılaşır.
 
 ## Kapsam Yaklaşımı
 
-Uzun vadeli vizyon geniş (video profiller, premium özellikler, gelişmiş AI
-içgörüleri vb.) ama geliştirme **yavaş ve sistemli** ilerleyecek: önce sağlam
-bir çekirdek, sonra üstüne katman katman ekleme. Detaylı fazlar için
+Vizyon geniş ama geliştirme **yavaş ve sistemli** ilerleyecek: önce sağlam
+bir çekirdek (kimlik + tercih sohbeti, asimetrik yüzde, temel eşleşme/sohbet),
+sonra güven/güvenlik katmanı, sonra etkileşimi derinleştiren özellikler
+(His Odaları, buluşma tavsiyeleri). Hangi mekaniğin hangi fazda olduğu için
 [`ROADMAP.md`](ROADMAP.md) dosyasına bakın.
 
 ## Açık Sorular (Zamanla Netleşecek)
 
-Bunlar şu an karar verilmemiş, geliştirme ilerledikçe netleştireceğimiz
-noktalar:
-
-- Uyum yüzdesi hesaplaması tam olarak hangi verilerden besleniyor? (Sadece
-  ilgi alanları mı, yoksa davranışsal veriler — mesajlaşma tarzı, uygulama
-  kullanımı — de dahil mi?)
+- ~~Uygulama girişi (ilk açılış deneyimi)~~ **Netleşti:** 3 kaydırmalı,
+  atlanabilir bir tanıtım akışı (asimetrik uyum, sohbet tabanlı onboarding,
+  buluşma güvenliği) giriş ekranından önce gösteriliyor.
+- His Odaları'ndaki geri bildirim, kötü niyetli/asılsız kullanıma karşı nasıl
+  korunacak? (Faz 3'te ele alınacak.)
+- Cihaz bazlı engelleme teknik olarak nasıl uygulanacak? (Mühendis arkadaşla
+  görüşülecek.)
 - Keşif ekranında sıralama mantığı: en yüksek uyumdan mı başlasın, yoksa
   çeşitlilik için karışık mı sunulsun?
-- AI sohbet onboarding'i ne kadar sürsün / kaç soru içersin?
-- Profil verisi ne sıklıkla yeniden hesaplanır (her mesajdan sonra mı,
-  periyodik mi)?
-- Gizlilik: AI ile yapılan sohbetin içeriği ne kadarı görünür/saklanır?
+- Profil verisi (kimlik/tercih vektörleri) ne sıklıkla yeniden hesaplanır —
+  her buluşma geri bildiriminden sonra mı, periyodik mi?
+- Gizlilik: AI ile yapılan sohbetlerin (kimlik, tercih, His Odaları) içeriği
+  ne kadar süre saklanır, kullanıcı silebilir mi?
 
 Bu sorular ROADMAP'teki ilgili fazlarda ele alınacak.

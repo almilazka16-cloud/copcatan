@@ -12,28 +12,44 @@ sağlam şekilde oturmadan bir sonrakine geçilmeyecek.
 ## Faz 1 — MVP Çekirdek
 Amaç: uygulamanın temel döngüsünü çalışır halde görmek.
 
-- Kullanıcı kaydı (e-posta/telefon ile basit auth)
-- AI ile sohbet ederek profil oluşturma (onboarding)
-- Asimetrik uyum yüzdesi hesaplama (ilk versiyon: ilgi alanı bazlı, basit)
+- Kullanıcı kaydı (e-posta/telefon ile basit auth) — **arayüz mock ile hazır,
+  gerçek Firebase Authentication bağlantısı bekliyor**
+- Kimlik sohbeti — AI ile "sen kimsin" (onboarding, kimlik vektörünü besler)
+- Tercih sohbeti — AI ile "kimi arıyorsun" (tercih vektörünü besler); ilk
+  versiyonda basit sorularla, hikayeleştirilmiş senaryolar sonraki bir
+  iyileştirme olabilir
+- Sert filtreler (dealbreaker'lar, ilişki niyeti uyuşmazlığı) — havuzdan
+  tamamen eleme mantığı, MVP'nin karakterinin bir parçası
+- Asimetrik uyum yüzdesi hesaplama (ilk versiyon, bkz. `ARCHITECTURE.md`) —
+  **kullanıcı kendi yüzdesini görmez**, sadece karşı tarafınkini görür
 - Basit keşif ekranı (profilleri uyum yüzdesiyle listeleme)
 - Karşılıklı beğenme → eşleşme
 - Eşleşen kullanıcılar arası temel mesajlaşma
-- **Kapsam dışı (bilinçli olarak sonraya bırakılıyor):** fotoğraf/kimlik
-  doğrulama, bildirimler, video, premium özellikler
+- **Kapsam dışı (bilinçli olarak sonraya bırakılıyor):** video/kimlik
+  doğrulama, buluşma modu, güvenlik bildirimleri, His Odaları, bildirimler,
+  premium özellikler
 
 ## Faz 2 — Güven & Güvenlik
-- Fotoğraf doğrulama (gerçek kişi kontrolü)
+- Fotoğraf doğrulama: **video ile canlılık kontrolü**, sonraki fotoğrafların
+  doğrulanan yüzle eşleşme kontrolü — doğrulanmamış profil kullanılamaz
+- Buluşma moduna geçiş (sohbetten ayrı bir arayüze geçen buluşma planlama
+  akışı)
+- Güvendiğin kişi bildirimi: buluşma detaylarının önceden atanmış güvenilir
+  kişiye otomatik iletilmesi (açık kullanıcı onayı ile)
+- Kötüye kullanım yaptırımı: ihlallerde 3 aylık engelleme (cihaz bazlı —
+  teknik detay mühendis arkadaşla netleştirilecek)
 - Kullanıcı raporlama / engelleme
 - İçerik moderasyonu (profil ve mesajlarda uygunsuz içerik tespiti)
 - Temel gizlilik kontrolleri (AI sohbet verisinin saklanması/silinmesi)
 
 ## Faz 3 — Etkileşim & Büyüme
-- Push bildirimleri (yeni eşleşme, mesaj, uyum güncellemesi)
-- Profilin zamanla AI ile gelişmesi (kullanım verisiyle uyum skorunun
-  güncellenmesi)
+- His Odaları: buluşma sonrası her iki tarafla ayrı ayrı AI sohbeti,
+  çelişkili/yeni bilgiyi karşı tarafın kimlik vektörüne geri besleyen
+  geri bildirim döngüsü (kötüye kullanıma karşı koruma tasarımı dahil)
+- Buluşma öncesi küçük tavsiyeler ("son dakika kurtarıcıları")
+- Push bildirimleri (yeni eşleşme, mesaj, buluşma hatırlatmaları)
 - AI destekli sohbet başlatma önerileri (ilk mesaj önerisi)
-- Uygulama içi geri bildirim döngüsü (kullanıcı "bu uyum neden böyle"
-  sorusuna dair içgörü alabilsin)
+- Tercih sohbetinin hikayeleştirilmiş senaryolarla zenginleştirilmesi
 
 ## Faz 4 — Monetizasyon & Genişleme
 - Premium üyelik (ör: günlük beğeni limiti, kimin beğendiğini görme)
