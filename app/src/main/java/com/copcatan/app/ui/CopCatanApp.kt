@@ -22,7 +22,9 @@ import com.copcatan.app.ui.chat.ChatScreen
 import com.copcatan.app.ui.discovery.DiscoveryScreen
 import com.copcatan.app.ui.matches.MatchesScreen
 import com.copcatan.app.ui.onboarding.OnboardingScreen
+import com.copcatan.app.ui.welcome.WelcomeScreen
 
+private const val ROUTE_WELCOME = "welcome"
 private const val ROUTE_AUTH = "auth"
 private const val ROUTE_ONBOARDING = "onboarding"
 private const val ROUTE_DISCOVERY = "discovery"
@@ -33,7 +35,16 @@ private const val ROUTE_CHAT = "chat/{matchId}"
 fun CopCatanApp() {
     val navController = rememberNavController()
 
-    NavHost(navController = navController, startDestination = ROUTE_AUTH) {
+    NavHost(navController = navController, startDestination = ROUTE_WELCOME) {
+        composable(ROUTE_WELCOME) {
+            WelcomeScreen(
+                onFinished = {
+                    navController.navigate(ROUTE_AUTH) {
+                        popUpTo(ROUTE_WELCOME) { inclusive = true }
+                    }
+                }
+            )
+        }
         composable(ROUTE_AUTH) {
             AuthScreen(
                 onAuthenticated = {
