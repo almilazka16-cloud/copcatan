@@ -135,9 +135,9 @@ sonra güven/güvenlik katmanı, sonra etkileşimi derinleştiren özellikler
 
 ## Açık Sorular (Zamanla Netleşecek)
 
-- Uygulama girişi (ilk açılış deneyimi): kullanıcı doğrudan giriş ekranıyla
-  mı karşılaşsın, yoksa kısa, atlanabilir bir tanıtım akışından sonra mı
-  giriş ekranına geçilsin? (Tartışılıyor.)
+- ~~Uygulama girişi (ilk açılış deneyimi)~~ **Netleşti:** 3 kaydırmalı,
+  atlanabilir bir tanıtım akışı (asimetrik uyum, sohbet tabanlı onboarding,
+  buluşma güvenliği) giriş ekranından önce gösteriliyor.
 - His Odaları'ndaki geri bildirim, kötü niyetli/asılsız kullanıma karşı nasıl
   korunacak? (Faz 3'te ele alınacak.)
 - Cihaz bazlı engelleme teknik olarak nasıl uygulanacak? (Mühendis arkadaşla
