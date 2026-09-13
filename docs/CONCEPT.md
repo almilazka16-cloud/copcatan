@@ -15,6 +15,17 @@ kişiselleştirilmiş bir uyum tahmini**dir. Uygulama arkadaşlık ve romantik
 ilişki arayan kullanıcılara hitap eder; form doldurtmaz, seçenek listesi
 sunmaz — her şey sohbet üzerinden ilerler.
 
+## Hedef Kitle ve Konumlandırma
+
+CopCatan bir "hookup" veya anlık eğlence uygulaması olarak konumlanmıyor.
+Hedef kitle, **gerçekten sağlıklı bir ilişki kurmak isteyen** insanlar —
+özellikle yoğun çalışan, bu yüzden sosyalleşmeye vakti/enerjisi kalmayan ve
+zamanla yalnızlaşan insanlar. Piyasada zaten anlık/yüzeysel tanışmaya
+odaklanan uygulamalar var; CopCatan'ın çözmeye çalıştığı problem farklı:
+insanları zorla eşleştirmek değil, **kafa dengi biriyle gerçek bir sohbete
+itmek**. Bu konumlandırma, ton/dil, pazarlama ve özellik önceliklendirmesi
+kararlarında referans noktası olacak.
+
 ## Kullanıcı Yolculuğu
 
 Aşağıdaki sıra, bir kullanıcının uygulamayla ilk temasından bir buluşma
@@ -87,6 +98,13 @@ sonrasına kadar geçireceği akışı özetliyor.
 - Bu seçilirse sohbet, **ayrı bir arayüze** geçer: buluşma yeri/zamanı gibi
   pratik detayların konuşulduğu, normal sohbetten görsel olarak ayrışan bir
   mod.
+- **Buluşma tekilliği:** Bir kullanıcı, aynı anda birden fazla kişiyle
+  buluşma modunda olamaz. Biriyle buluşma moduna geçince, o buluşma
+  netleşene/tamamlanana kadar başka biriyle yeni bir buluşma moduna
+  geçemez. Bu kısıtlama **sadece buluşma moduna özgüdür** — buluşma öncesi
+  normal sohbette ve keşif ekranında istediği kadar kişiyle konuşmaya,
+  eşleşmeye ve kaydırmaya devam edebilir. Kısıtlama, "buluşma" taahhüdüne
+  girdiği anda başlar.
 
 ### 7. Güvenlik — Güvendiğin Kişi Bildirimi
 - Kullanıcılar önceden bir güvendikleri kişiyi (acil durum kişisi) atar.
@@ -105,6 +123,11 @@ sonrasına kadar geçireceği akışı özetliyor.
   düşünülüyor — zorunlu değil, hafif ve keyifli bir dokunuş.
 
 ### 9. Buluşma Sonrası — "His Odaları"
+- **Neden:** Birçok insanın buluşma sonrası anlatacak, "bu nasıl geçti"
+  diye danışabileceği yakın bir arkadaşı yok — yalnızlaşma bunun bir
+  parçası. His Odaları, bu arkadaş boşluğunu AI ile dolduruyor: pasif bir
+  form değil, gerçekten bir arkadaşla buluşma sonrası sohbet ediyormuş gibi
+  hissettiren, AI'ın aktif olarak soru sorduğu bir sohbet.
 - Buluşmadan sonra (aynı gün veya ertesi gün) her iki taraf **ayrı ayrı**
   AI ile buluşmayı konuşur — samimi, "arkadaşına anlatır gibi" bir sohbet.
 - AI sunucu tarafında **her iki tarafı da tanıdığı için**, çelişkileri
