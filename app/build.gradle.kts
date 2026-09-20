@@ -5,11 +5,11 @@ plugins {
 }
 
 android {
-    namespace = "com.copcatan.app"
+    namespace = "com.sensale.app"
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.copcatan.app"
+        applicationId = "com.sensale.app"
         minSdk = 26
         targetSdk = 34
         versionCode = 1

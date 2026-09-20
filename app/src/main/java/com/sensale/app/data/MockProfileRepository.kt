@@ -1,4 +1,4 @@
-package com.copcatan.app.data
+package com.sensale.app.data
 
 /**
  * Faz 1'de gerçek bir backend/AI servisiyle değiştirilecek geçici veri kaynağı.

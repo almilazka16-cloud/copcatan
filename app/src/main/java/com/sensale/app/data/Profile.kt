@@ -1,4 +1,4 @@
-package com.copcatan.app.data
+package com.sensale.app.data
 
 data class Profile(
     val id: String,

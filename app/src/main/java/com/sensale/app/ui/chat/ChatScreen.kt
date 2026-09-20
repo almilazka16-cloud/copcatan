@@ -1,21 +1,22 @@
-package com.copcatan.app.ui.onboarding
+package com.sensale.app.ui.chat
 
-import androidx.compose.foundation.layout.Column
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.filled.ArrowBack
 import androidx.compose.material.icons.filled.Send
-import androidx.compose.material3.Button
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TopAppBar
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -25,39 +26,47 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.copcatan.app.ui.common.ChatBubble
+import com.sensale.app.ui.common.ChatBubble
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun OnboardingScreen(
-    onFinished: () -> Unit,
-    viewModel: OnboardingViewModel = viewModel()
+fun ChatScreen(
+    matchId: String,
+    onBack: () -> Unit,
+    viewModel: ChatViewModel = viewModel()
 ) {
     var input by remember { mutableStateOf("") }
     val messages by viewModel.messages
-    val isComplete by viewModel.isComplete
 
     Scaffold(
+        topBar = {
+            TopAppBar(
+                title = { Text("Sohbet") },
+                navigationIcon = {
+                    IconButton(onClick = onBack) {
+                        Icon(Icons.Filled.ArrowBack, contentDescription = "Geri")
+                    }
+                }
+            )
+        },
         bottomBar = {
-            Column(modifier = Modifier.padding(8.dp)) {
-                if (isComplete) {
-                    Button(onClick = onFinished, modifier = Modifier.fillMaxWidth()) {
-                        Text("Devam Et")
-                    }
-                } else {
-                    Row(verticalAlignment = Alignment.CenterVertically) {
-                        OutlinedTextField(
-                            value = input,
-                            onValueChange = { input = it },
-                            modifier = Modifier.weight(1f),
-                            placeholder = { Text("Cevabını yaz...") }
-                        )
-                        IconButton(onClick = {
-                            viewModel.submitAnswer(input)
-                            input = ""
-                        }) {
-                            Icon(Icons.Filled.Send, contentDescription = "Gönder")
-                        }
-                    }
+            Row(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(8.dp),
+                verticalAlignment = Alignment.CenterVertically
+            ) {
+                OutlinedTextField(
+                    value = input,
+                    onValueChange = { input = it },
+                    modifier = Modifier.weight(1f),
+                    placeholder = { Text("Mesaj yaz...") }
+                )
+                IconButton(onClick = {
+                    viewModel.sendMessage(input)
+                    input = ""
+                }) {
+                    Icon(Icons.Filled.Send, contentDescription = "Gönder")
                 }
             }
         }

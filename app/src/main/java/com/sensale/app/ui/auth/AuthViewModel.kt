@@ -1,4 +1,4 @@
-package com.copcatan.app.ui.auth
+package com.sensale.app.ui.auth
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel

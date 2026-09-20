@@ -1,8 +1,8 @@
-package com.copcatan.app.ui.chat
+package com.sensale.app.ui.chat
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.copcatan.app.data.ChatMessage
+import com.sensale.app.data.ChatMessage
 
 class ChatViewModel : ViewModel() {
 

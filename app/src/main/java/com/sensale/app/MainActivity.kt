@@ -1,19 +1,19 @@
-package com.copcatan.app
+package com.sensale.app
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.copcatan.app.ui.CopCatanApp
-import com.copcatan.app.ui.theme.CopCatanTheme
+import com.sensale.app.ui.SensaleApp
+import com.sensale.app.ui.theme.SensaleTheme
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
         setContent {
-            CopCatanTheme {
-                CopCatanApp()
+            SensaleTheme {
+                SensaleApp()
             }
         }
     }

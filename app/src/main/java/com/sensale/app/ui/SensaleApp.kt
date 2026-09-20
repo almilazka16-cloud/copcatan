@@ -1,4 +1,4 @@
-package com.copcatan.app.ui
+package com.sensale.app.ui
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.padding
@@ -17,12 +17,12 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.copcatan.app.ui.auth.AuthScreen
-import com.copcatan.app.ui.chat.ChatScreen
-import com.copcatan.app.ui.discovery.DiscoveryScreen
-import com.copcatan.app.ui.matches.MatchesScreen
-import com.copcatan.app.ui.onboarding.OnboardingScreen
-import com.copcatan.app.ui.welcome.WelcomeScreen
+import com.sensale.app.ui.auth.AuthScreen
+import com.sensale.app.ui.chat.ChatScreen
+import com.sensale.app.ui.discovery.DiscoveryScreen
+import com.sensale.app.ui.matches.MatchesScreen
+import com.sensale.app.ui.onboarding.OnboardingScreen
+import com.sensale.app.ui.welcome.WelcomeScreen
 
 private const val ROUTE_WELCOME = "welcome"
 private const val ROUTE_AUTH = "auth"
@@ -32,7 +32,7 @@ private const val ROUTE_MATCHES = "matches"
 private const val ROUTE_CHAT = "chat/{matchId}"
 
 @Composable
-fun CopCatanApp() {
+fun SensaleApp() {
     val navController = rememberNavController()
 
     NavHost(navController = navController, startDestination = ROUTE_WELCOME) {

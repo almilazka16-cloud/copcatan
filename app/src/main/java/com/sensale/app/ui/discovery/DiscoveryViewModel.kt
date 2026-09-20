@@ -1,9 +1,9 @@
-package com.copcatan.app.ui.discovery
+package com.sensale.app.ui.discovery
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.copcatan.app.data.MockProfileRepository
-import com.copcatan.app.data.Profile
+import com.sensale.app.data.MockProfileRepository
+import com.sensale.app.data.Profile
 
 class DiscoveryViewModel : ViewModel() {
 

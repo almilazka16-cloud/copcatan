@@ -8,10 +8,11 @@ verilerine göre **asimetrik ve dinamik** olarak hesaplanır.
 
 İlk platform: **Android (Kotlin, native)**
 
-> **Not:** Uygulamanın adı **Sensale** olarak kesinleşti. Teknik tarafta
-> (paket adı `com.copcatan.app`, GitHub deposu `copcatan`) henüz eski isim
-> kullanılıyor — bu, mühendis arkadaşla birlikte yapılacak ayrı bir yeniden
-> adlandırma işi. Kullanıcı görecek tüm metinler zaten "Sensale" diyor.
+> **Not:** Uygulamanın adı **Sensale** olarak kesinleşti. Kod tabanı
+> (paket adı `com.sensale.app`, sınıf isimleri, kullanıcı görecek tüm
+> metinler) buna göre güncellendi. Tek geriye kalan: bu GitHub deposunun
+> adı hâlâ `copcatan` — depo adını değiştirmek, mevcut PR/klon
+> bağlantılarını etkileyeceği için ayrı bir onay gerektiriyor.
 
 Detaylar için:
 - [`docs/CONCEPT.md`](docs/CONCEPT.md) — ürün konsepti, mekanikler, temel kararlar

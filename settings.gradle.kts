@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "CopCatan"
+rootProject.name = "Sensale"
 include(":app")

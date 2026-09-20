@@ -1,4 +1,4 @@
-package com.copcatan.app.ui.welcome
+package com.sensale.app.ui.welcome
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement

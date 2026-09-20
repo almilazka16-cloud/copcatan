@@ -1,4 +1,4 @@
-package com.copcatan.app.ui.matches
+package com.sensale.app.ui.matches
 
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.Box
@@ -13,7 +13,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.copcatan.app.data.MockProfileRepository
+import com.sensale.app.data.MockProfileRepository
 
 @Composable
 fun MatchesScreen(onOpenChat: (String) -> Unit) {

@@ -1,4 +1,4 @@
-package com.copcatan.app.ui.theme
+package com.sensale.app.ui.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
@@ -11,19 +11,19 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.LocalContext
 
 private val LightColors = lightColorScheme(
-    primary = CopCatanPink,
-    secondary = CopCatanPurple,
+    primary = SensalePink,
+    secondary = SensalePurple,
     background = LightBackground,
     surface = LightBackground
 )
 
 private val DarkColors = darkColorScheme(
-    primary = CopCatanPink,
-    secondary = CopCatanPurple
+    primary = SensalePink,
+    secondary = SensalePurple
 )
 
 @Composable
-fun CopCatanTheme(
+fun SensaleTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
     dynamicColor: Boolean = true,
     content: @Composable () -> Unit

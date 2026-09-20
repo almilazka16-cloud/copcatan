@@ -1,4 +1,4 @@
-package com.copcatan.app.ui.discovery
+package com.sensale.app.ui.discovery
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -24,7 +24,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.viewmodel.compose.viewModel
-import com.copcatan.app.data.Profile
+import com.sensale.app.data.Profile
 
 @Composable
 fun DiscoveryScreen(viewModel: DiscoveryViewModel = viewModel()) {

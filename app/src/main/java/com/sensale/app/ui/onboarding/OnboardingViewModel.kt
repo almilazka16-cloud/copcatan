@@ -1,8 +1,8 @@
-package com.copcatan.app.ui.onboarding
+package com.sensale.app.ui.onboarding
 
 import androidx.compose.runtime.mutableStateOf
 import androidx.lifecycle.ViewModel
-import com.copcatan.app.data.ChatMessage
+import com.sensale.app.data.ChatMessage
 
 /**
  * Şu an sabit (scripted) sorulardan oluşan bir onboarding akışı.

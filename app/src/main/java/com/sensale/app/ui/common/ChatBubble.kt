@@ -1,4 +1,4 @@
-package com.copcatan.app.ui.common
+package com.sensale.app.ui.common
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -10,7 +10,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
-import com.copcatan.app.data.ChatMessage
+import com.sensale.app.data.ChatMessage
 
 @Composable
 fun ChatBubble(message: ChatMessage) {
