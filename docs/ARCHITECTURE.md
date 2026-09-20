@@ -123,7 +123,16 @@ içinden çıkarılabilir ve kötüye kullanılabilir.
 
 ## Maliyet Notu
 
-- Firebase'in ücretsiz katmanı MVP ve küçük kullanıcı grupları için yeterli.
+- Firebase'in ücretsiz katmanı (Spark plan) Authentication, Firestore,
+  Storage ve Cloud Messaging için MVP ve küçük kullanıcı grupları'nda
+  yeterli.
+- **Önemli:** Cloud Functions'ı çalıştırmak ve oradan dış bir servise
+  (Claude API gibi) istek atmak, projeyi **Blaze (kullandıkça öde) plana**
+  yükseltmeyi gerektiriyor — bu bir kredi kartı eklenmesi demek. Blaze'de
+  de cömert bir ücretsiz kullanım kotası var (küçük ölçekte muhtemelen
+  ödeme çıkmaz), ama bu geçiş bilinçli yapılmalı; AI'ı gerçekten
+  bağlayacağımız aşamada (Faz 2) gündeme gelecek, MVP'nin ilk adımlarında
+  (Authentication, Firestore kurulumu) gerekmiyor.
 - Claude API maliyeti kullanım bazlıdır (token başına ücret). Onboarding
   sohbeti kullanıcı başına bir kez çalıştığı için maliyeti öngörülebilir;
   embedding üretimi de ucuzdur. En büyük maliyet riski, "her görüntülemede
@@ -146,7 +155,11 @@ erteler:
    önemli bir girdi.)
 2. Embedding üretimi için hangi model/servis kullanılacak? (Bu, Claude API
    ile mi yoksa ayrı bir embedding servisiyle mi yapılacak — bu konuda
-   güncel seçenekleri birlikte değerlendirebiliriz.)
+   güncel seçenekleri birlikte değerlendirebiliriz.) Firebase'in kendi
+   **Genkit** aracı (LLM entegrasyonunu kolaylaştıran açık kaynak bir
+   çerçeve) da bu noktada bir seçenek — Cloud Functions içinde Claude
+   API'ye bağlanmayı basitleştirebilir, mühendis arkadaşla
+   değerlendirilmeli.
 3. Onboarding sohbetinin gizliliği: ham sohbet metni ne kadar süre
    saklanacak, kullanıcı bunu silebilecek mi?
 4. İlk sürümde kaç kullanıcı bekleniyor? (Firebase ücretsiz katman
