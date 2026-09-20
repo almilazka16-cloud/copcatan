@@ -1,12 +1,17 @@
-# CopCatan — AI Destekli Dating Uygulaması
+# Sensale — AI Destekli Dating Uygulaması
 
-CopCatan, klasik "sağa/sola kaydır" mantığından farklı olarak **yapay zeka ile
+Sensale, klasik "sağa/sola kaydır" mantığından farklı olarak **yapay zeka ile
 üretilen, kişiye özel uyum yüzdeleri** üzerine kurulu bir tanışma uygulaması.
 Her kullanıcı, aynı profili farklı bir uyum yüzdesiyle görür — çünkü uyum,
 karşılıklı ilgi alanlarına ve AI ile yapılan sohbetten çıkarılan kişilik
 verilerine göre **asimetrik ve dinamik** olarak hesaplanır.
 
 İlk platform: **Android (Kotlin, native)**
+
+> **Not:** Uygulamanın adı **Sensale** olarak kesinleşti. Teknik tarafta
+> (paket adı `com.copcatan.app`, GitHub deposu `copcatan`) henüz eski isim
+> kullanılıyor — bu, mühendis arkadaşla birlikte yapılacak ayrı bir yeniden
+> adlandırma işi. Kullanıcı görecek tüm metinler zaten "Sensale" diyor.
 
 Detaylar için:
 - [`docs/CONCEPT.md`](docs/CONCEPT.md) — ürün konsepti, mekanikler, temel kararlar

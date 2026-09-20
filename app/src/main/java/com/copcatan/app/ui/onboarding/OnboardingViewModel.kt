@@ -18,7 +18,7 @@ private data class ScriptedQuestion(val text: String, val type: QuestionType)
 
 private val scriptedQuestions = listOf(
     ScriptedQuestion(
-        text = "Merhaba! Ben CopCatan'ın AI asistanıyım. Seni tanımak için birkaç soru soracağım. " +
+        text = "Merhaba! Ben Sensale'nin AI asistanıyım. Seni tanımak için birkaç soru soracağım. " +
             "Önce, boş zamanlarında ne yapmayı seversin?",
         type = QuestionType.IDENTITY
     ),

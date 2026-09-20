@@ -6,8 +6,9 @@ sağlam şekilde oturmadan bir sonrakine geçilmeyecek.
 ## Faz 0 — Konsept & Planlama (şu an buradayız)
 - [x] Temel ürün konsepti netleştirildi (bkz. `CONCEPT.md`)
 - [ ] Teknik mimari kararı (backend yaklaşımı) — mühendis arkadaşla birlikte
-- [ ] Android proje iskeletinin oluşturulması
-- [ ] Tasarım/UX yönü (renk, isim, marka kimliği) — opsiyonel, istenirse
+- [x] Android proje iskeletinin oluşturulması
+- [x] Tasarım/UX yönü: renk kimliği (bordo + krem) ve isim (**Sensale**)
+  netleşti — teknik yeniden adlandırma (paket adı, repo adı) hâlâ bekliyor
 
 ## Faz 1 — MVP Çekirdek
 Amaç: uygulamanın temel döngüsünü çalışır halde görmek.

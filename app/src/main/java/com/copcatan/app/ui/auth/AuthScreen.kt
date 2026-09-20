@@ -70,7 +70,7 @@ fun AuthScreen(
 
 @Composable
 private fun MethodStep(onEmail: () -> Unit, onPhone: () -> Unit) {
-    Text("CopCatan'a Hoş Geldin", style = MaterialTheme.typography.titleLarge)
+    Text("Sensale'ye Hoş Geldin", style = MaterialTheme.typography.titleLarge)
     Text(
         "Devam etmek için e-posta veya telefon numaranla giriş yap.",
         color = MaterialTheme.colorScheme.onSurfaceVariant

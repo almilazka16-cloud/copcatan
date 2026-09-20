@@ -3,7 +3,7 @@
 ## Temel Fikir
 
 Piyasadaki dating uygulamalarının çoğu (Tinder, Bumble, Hinge...) statik bir
-"beğen/beğenme" akışına dayanıyor. CopCatan'ın farkı:
+"beğen/beğenme" akışına dayanıyor. Sensale'nin farkı:
 
 > Aynı profil, farklı kullanıcıların ekranında **farklı bir uyum yüzdesiyle**
 > görünür. Bu yüzde, kullanıcının kim olduğu ve karşı taraftan ne beklediği
@@ -17,11 +17,11 @@ sunmaz — her şey sohbet üzerinden ilerler.
 
 ## Hedef Kitle ve Konumlandırma
 
-CopCatan bir "hookup" veya anlık eğlence uygulaması olarak konumlanmıyor.
+Sensale bir "hookup" veya anlık eğlence uygulaması olarak konumlanmıyor.
 Hedef kitle, **gerçekten sağlıklı bir ilişki kurmak isteyen** insanlar —
 özellikle yoğun çalışan, bu yüzden sosyalleşmeye vakti/enerjisi kalmayan ve
 zamanla yalnızlaşan insanlar. Piyasada zaten anlık/yüzeysel tanışmaya
-odaklanan uygulamalar var; CopCatan'ın çözmeye çalıştığı problem farklı:
+odaklanan uygulamalar var; Sensale'nin çözmeye çalıştığı problem farklı:
 insanları zorla eşleştirmek değil, **kafa dengi biriyle gerçek bir sohbete
 itmek**. Bu konumlandırma, ton/dil, pazarlama ve özellik önceliklendirmesi
 kararlarında referans noktası olacak.
