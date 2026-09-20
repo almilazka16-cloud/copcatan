@@ -1,0 +1,7 @@
+package com.sensale.app.ui.theme
+
+import androidx.compose.ui.graphics.Color
+
+val SensalePink = Color(0xFFE91E63)
+val SensalePurple = Color(0xFF6750A4)
+val LightBackground = Color(0xFFFFFBFE)
